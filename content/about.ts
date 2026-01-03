@@ -1,16 +1,31 @@
 export const aboutContent = {
-  title: "(Pendiente: título 'Sobre nosotros' del DOCX)",
-  intro: "(Pendiente: párrafo 'Quiénes somos' del DOCX)",
-  valuesTitle: "(Pendiente: título de valores del DOCX)",
+  title: "Sobre nosotros",
+  intro:
+    "PROSELEC, S.A. es una empresa panameña fundada en 2011, con experiencia en obras civiles, arquitectura y obras electromecánicas.",
+  valuesTitle: "Nuestro enfoque",
   values: [
-    "(Pendiente: valor 1 del DOCX/PDF)",
-    "(Pendiente: valor 2 del DOCX/PDF)",
-    "(Pendiente: valor 3 del DOCX/PDF)"
+    "Calidad en el servicio",
+    "Seguridad en la ejecución",
+    "Soluciones confiables",
+    "Innovación tecnológica",
+    "Buenas prácticas y cumplimiento normativo"
   ],
-  whyTitle: "(Pendiente: 'Por qué elegirnos' del DOCX)",
+  whyTitle: "Por qué elegirnos",
   why: [
-    { title: "(Pendiente)", body: "(Pendiente: punto del DOCX)" },
-    { title: "(Pendiente)", body: "(Pendiente: punto del DOCX)" },
-    { title: "(Pendiente)", body: "(Pendiente: punto del DOCX)" }
+    {
+      title: "Especialización técnica",
+      body:
+        "Capacidad para atender instalaciones que requieren alto grado de especialización."
+    },
+    {
+      title: "Gestión y control",
+      body:
+        "Enfoque en planificación, ejecución y control para cumplir especificaciones y objetivos."
+    },
+    {
+      title: "Soporte integral",
+      body:
+        "Acompañamiento desde el diseño y planos hasta instalación, pruebas y mantenimiento."
+    }
   ]
 };
