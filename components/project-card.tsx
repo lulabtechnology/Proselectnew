@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { Card, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 
 export default function ProjectCard({
   title,
@@ -18,27 +17,25 @@ export default function ProjectCard({
 
   return (
     <motion.div
-      whileHover={reduce ? undefined : { y: -4 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
+      whileHover={reduce ? undefined : { y: -6 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
       className="group"
     >
       <Card className="overflow-hidden">
-        <div className="relative aspect-[16/10] bg-gradient-to-br from-slate-100 to-slate-200">
+        <div className="relative aspect-[16/10] bg-[radial-gradient(circle_at_20%_20%,rgba(12,74,173,0.10),transparent_55%),radial-gradient(circle_at_80%_30%,rgba(12,165,178,0.10),transparent_55%),linear-gradient(to_bottom,#fff,rgb(var(--brand-50)))]">
           <Image
             src={image}
             alt=""
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
           <div className="absolute inset-0 ring-1 ring-inset ring-slate-900/10" />
         </div>
 
-        <CardContent className={cn("pt-5")}>
+        <CardContent className="pt-5">
           <CardTitle className="text-base">{title}</CardTitle>
-          <CardDescription className="mt-1 line-clamp-2">
-            {subtitle}
-          </CardDescription>
+          <CardDescription className="mt-1 line-clamp-2">{subtitle}</CardDescription>
         </CardContent>
       </Card>
     </motion.div>
