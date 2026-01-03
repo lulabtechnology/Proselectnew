@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 255 255 255;
+  --fg: 15 23 42; /* slate-900 */
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  color: rgb(var(--fg));
+  background: rgb(var(--bg));
+}
+
+.container-pad {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.bg-grid {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.10) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900/20 focus-visible:ring-offset-2;
+}
