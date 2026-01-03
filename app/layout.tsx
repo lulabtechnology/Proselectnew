@@ -15,13 +15,13 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.shortName} | ${site.tagline || "Web corporativa"}`,
+    default: `${site.shortName} | ${site.tagline}`,
     template: `%s | ${site.shortName}`
   },
-  description: site.description || "(Pendiente: description del DOCX/PDF)",
+  description: site.description,
   openGraph: {
-    title: `${site.shortName} | ${site.tagline || "Web corporativa"}`,
-    description: site.description || "(Pendiente: description del DOCX/PDF)",
+    title: `${site.shortName} | ${site.tagline}`,
+    description: site.description,
     images: [{ url: branding.ogImagePath }]
   }
 };
