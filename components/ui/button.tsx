@@ -11,13 +11,13 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const styles: Record<Variant, string> = {
   primary:
-    "bg-slate-900 text-white hover:bg-slate-800 shadow-soft",
+    "text-white shadow-glow bg-[linear-gradient(135deg,rgb(var(--brand))_0%,rgb(var(--accent))_100%)] hover:brightness-[1.02]",
   secondary:
-    "bg-slate-100 text-slate-900 hover:bg-slate-200",
+    "bg-brand-50 text-ink hover:bg-brand-100 border border-brand-200",
   outline:
-    "border border-slate-200 bg-white hover:bg-slate-50",
+    "border border-slate-200 bg-white hover:bg-brand-50",
   ghost:
-    "bg-transparent hover:bg-slate-100"
+    "bg-transparent hover:bg-brand-50"
 };
 
 const sizes: Record<Size, string> = {
@@ -32,7 +32,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-2xl font-medium transition focus-ring disabled:opacity-50 disabled:pointer-events-none",
+          "inline-flex items-center justify-center gap-2 rounded-2xl font-semibold transition focus-ring disabled:opacity-50 disabled:pointer-events-none",
           styles[variant],
           sizes[size],
           className
