@@ -4,19 +4,29 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import * as React from "react";
 import Brand from "@/components/brand";
-import { nav } from "@/content/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import { contact } from "@/content/site";
+import { telLink, waLink } from "@/lib/links";
+
+const nav = [
+  { label: "Inicio", href: "/" },
+  { label: "Sobre nosotros", href: "/sobre-nosotros" },
+  { label: "Servicios", href: "/servicios" },
+  { label: "Proyectos", href: "/proyectos" },
+  { label: "Contacto", href: "/contacto" }
+];
 
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
-
   React.useEffect(() => setOpen(false), [pathname]);
 
+  const waMsg = "Hola, me gustaría solicitar una cotización con PROSELEC.";
+
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur">
       <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(12,74,173,0.55),rgba(12,165,178,0.55),transparent)]" />
       <div className="container-pad">
         <div className="flex h-16 items-center justify-between gap-3">
@@ -42,12 +52,19 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="hidden md:block">
-            <Link href="/contacto">
-              <Button>
-                Contactar <ArrowRight className="h-4 w-4" />
+          <div className="hidden md:flex items-center gap-2">
+            <a href={telLink(contact.phoneE164)}>
+              <Button variant="outline" size="md">
+                <Phone className="h-4 w-4" />
+                Llamar
               </Button>
-            </Link>
+            </a>
+            <a href={waLink(contact.whatsappDigits, waMsg)} target="_blank" rel="noreferrer">
+              <Button size="md">
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp
+              </Button>
+            </a>
           </div>
 
           <button
@@ -64,7 +81,7 @@ export default function Navbar() {
       <div
         className={cn(
           "md:hidden overflow-hidden border-t border-slate-200 bg-white transition-[max-height] duration-300",
-          open ? "max-h-[420px]" : "max-h-0"
+          open ? "max-h-[520px]" : "max-h-0"
         )}
       >
         <div className="container-pad py-3">
@@ -86,9 +103,19 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <Link href="/contacto" className="mt-2">
-              <Button className="w-full">Contactar</Button>
-            </Link>
+
+            <div className="mt-2 grid gap-2">
+              <a href={telLink(contact.phoneE164)}>
+                <Button className="w-full" variant="outline">
+                  <Phone className="h-4 w-4" /> Llamar
+                </Button>
+              </a>
+              <a href={waLink(contact.whatsappDigits, waMsg)} target="_blank" rel="noreferrer">
+                <Button className="w-full">
+                  <MessageCircle className="h-4 w-4" /> WhatsApp
+                </Button>
+              </a>
+            </div>
           </div>
         </div>
       </div>
