@@ -6,7 +6,7 @@ import * as React from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Slide = {
   image: string;
@@ -25,23 +25,30 @@ export default function HeroSlider({
 }) {
   const [index, setIndex] = React.useState(0);
   const reduce = useReducedMotion();
+  const [broken, setBroken] = React.useState<Record<string, boolean>>({});
 
-  React.useEffect(() => {
-    const id = window.setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length);
-    }, 6500);
-    return () => window.clearInterval(id);
+  const next = React.useCallback(() => {
+    setIndex((i) => (i + 1) % slides.length);
   }, [slides.length]);
 
+  const prev = React.useCallback(() => {
+    setIndex((i) => (i - 1 + slides.length) % slides.length);
+  }, [slides.length]);
+
+  React.useEffect(() => {
+    const id = window.setInterval(() => next(), 6500);
+    return () => window.clearInterval(id);
+  }, [next]);
+
   const active = slides[index];
+  const imgIsBroken = !!broken[active.image];
 
   return (
     <div className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-slate-950 shadow-glow">
       <div className="relative min-h-[72vh] sm:min-h-[70vh] lg:min-h-[74vh]">
-        {/* fondo gradient (fallback) */}
+        {/* Fallback gradient SI la imagen falta */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(12,74,173,0.55),transparent_55%),radial-gradient(circle_at_85%_15%,rgba(12,165,178,0.45),transparent_55%),linear-gradient(135deg,rgb(var(--brand-900)),rgb(var(--brand-700)))]" />
 
-        {/* slide image */}
         <AnimatePresence mode="wait">
           <motion.div
             key={active.image}
@@ -51,20 +58,23 @@ export default function HeroSlider({
             exit={reduce ? { opacity: 1 } : { opacity: 0, scale: 1.01 }}
             transition={{ duration: 0.65, ease: "easeOut" }}
           >
-            <Image
-              src={active.image}
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover opacity-70"
-            />
+            {!imgIsBroken ? (
+              <Image
+                src={active.image}
+                alt=""
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover opacity-70"
+                onError={() => setBroken((b) => ({ ...b, [active.image]: true }))}
+              />
+            ) : null}
+
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/35 to-slate-950/10" />
             <div className="absolute inset-0 bg-gradient-to-r from-slate-950/55 via-transparent to-slate-950/10" />
           </motion.div>
         </AnimatePresence>
 
-        {/* decor motion overlay */}
         {!reduce && (
           <motion.div
             className="pointer-events-none absolute -top-24 -right-24 h-[420px] w-[420px] rounded-full bg-white/10 blur-3xl"
@@ -73,7 +83,6 @@ export default function HeroSlider({
           />
         )}
 
-        {/* content */}
         <div className="relative z-10">
           <div className="container-pad">
             <div className="flex min-h-[72vh] sm:min-h-[70vh] lg:min-h-[74vh] items-end pb-10 sm:pb-12">
@@ -85,7 +94,6 @@ export default function HeroSlider({
                   transition={{ duration: 0.5, ease: "easeOut" }}
                   className="rounded-3xl bg-white/10 p-5 backdrop-blur-md ring-1 ring-white/15 sm:p-6"
                 >
-                  {/* chips */}
                   <div className="mb-4 flex flex-wrap gap-2">
                     {chips.slice(0, 6).map((c) => (
                       <span
@@ -119,9 +127,29 @@ export default function HeroSlider({
                   </div>
                 </motion.div>
 
-                {/* dots + progress */}
-                <div className="mt-5">
-                  <div className="flex items-center gap-2">
+                {/* CONTROLES tipo tu screenshot */}
+                <div className="mt-5 flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={prev}
+                    className="rounded-2xl bg-white/10 px-4 py-2 text-xs font-extrabold text-white ring-1 ring-white/15 hover:bg-white/15 focus-ring"
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      <ChevronLeft className="h-4 w-4" /> Anterior
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={next}
+                    className="rounded-2xl bg-white/10 px-4 py-2 text-xs font-extrabold text-white ring-1 ring-white/15 hover:bg-white/15 focus-ring"
+                  >
+                    <span className="inline-flex items-center gap-2">
+                      Siguiente <ChevronRight className="h-4 w-4" />
+                    </span>
+                  </button>
+
+                  <div className="ml-2 flex items-center gap-2">
                     {slides.map((_, i) => (
                       <button
                         key={i}
@@ -135,19 +163,13 @@ export default function HeroSlider({
                       />
                     ))}
                   </div>
-                  <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/15">
-                    <div
-                      className="h-full rounded-full bg-[linear-gradient(90deg,rgba(12,74,173,1),rgba(12,165,178,1))]"
-                      style={{ width: `${((index + 1) / slides.length) * 100}%` }}
-                    />
-                  </div>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
 
-        {/* light border */}
         <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
       </div>
     </div>
