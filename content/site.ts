@@ -3,46 +3,54 @@ export type SiteMeta = {
   shortName: string;
   tagline: string;
   description: string;
-  url?: string;       // si no tienes URL oficial, déjalo vacío
-  founded?: string;   // opcional, solo si está en DOCX/PDF
-  about: string;      // texto corto (DOCX)
-  mission?: string;   // opcional
-  vision?: string;    // opcional
+  url?: string;
+  founded?: string;
+  about: string;
+  mission?: string;
+  vision?: string;
 };
 
 export type ContactMeta = {
-  phoneDisplay: string;   // ej: "XXXX-XXXX" (solo si está en DOCX/PDF)
-  phoneE164: string;      // ej: "+507XXXXXXXX" (solo si está en DOCX/PDF)
-  whatsappDigits: string; // ej: "507XXXXXXXX" (solo si está en DOCX/PDF)
-  whatsappE164: string;   // ej: "+507XXXXXXXX" (solo si está en DOCX/PDF)
-  emails: string[];       // uno o varios correos (solo si está en DOCX/PDF)
-  address: string;        // dirección (solo si está en DOCX/PDF)
-  mapQuery: string;       // texto para Google Maps embed (solo si está en DOCX/PDF)
+  phoneDisplay: string;
+  phoneE164: string;
+  whatsappDigits: string;   // lo dejamos vacío porque el cliente pidió SOLO teléfono y correo
+  whatsappE164: string;     // vacío
+  emails: string[];
+  address: string;          // vacío por instrucción del cliente
+  mapQuery: string;         // vacío por instrucción del cliente
 };
 
 export const branding = {
-  // Cambia SOLO aquí si tu repo usa otra ruta (ej: "/images/logo/logo.png")
   logoPath: "/images/logo.png",
-  ogImagePath: "/images/og.jpg" // placeholder; NO importar estático
+  ogImagePath: "/images/og.jpg"
 };
 
 export const site: SiteMeta = {
-  name: "PROSELEC, S.A.",
+  name: "Proyecto y Servicios Electromecánicos, S.A. (PROSELEC, S.A.)",
   shortName: "PROSELEC",
-  tagline: "(Pendiente: pegar tagline del DOCX “mejora de pagina”)",
-  description: "(Pendiente: pegar descripción oficial del DOCX/PDF, sin inventar datos)",
-  url: "",
-  founded: "",
-  about: "(Pendiente: pegar texto corto 'Quiénes somos' del DOCX)"
-  // mission/vision: solo si existen en DOCX/PDF
+  tagline: "Obras civiles, arquitectura e instalaciones electromecánicas",
+  description:
+    "Soluciones de ingeniería para el diseño, planificación, construcción, equipamiento y mantenimiento de proyectos.",
+  url: "www.proselecpanama.es",
+  founded: "2011",
+  about:
+    "Empresa panameña que desarrolla su actividad en obras civiles, arquitectura y obras electromecánicas.",
+  mission:
+    "Brindar un servicio de calidad en el estudio técnico para el diseño, planificación, construcción, equipamiento y mantenimiento de proyectos de obra civil e instalaciones electromecánicas.",
+  vision:
+    "Ser una empresa reconocida por ofrecer un servicio de calidad, seguridad y confiable, destacando en la innovación y tecnologías de vanguardia."
 };
 
 export const contact: ContactMeta = {
-  phoneDisplay: "",
-  phoneE164: "",
+  phoneDisplay: "6852-7127",
+  phoneE164: "+50768527127",
+
   whatsappDigits: "",
   whatsappE164: "",
-  emails: [],
+
+  // 👇 El cliente dijo “correo nuevo (dominio)”: NO lo invento. Lo dejo para que lo reemplaces.
+  emails: ["REEMPLAZAR@TU-DOMINIO.COM"],
+
   address: "",
   mapQuery: ""
 };
