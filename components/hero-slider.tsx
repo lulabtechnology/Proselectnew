@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Slide = {
-  image: string;
+  image: string; // "/images/hero/slide-1.jpg"
   title: string;
   subtitle: string;
   ctaPrimary: { label: string; href: string };
@@ -18,10 +18,12 @@ type Slide = {
 
 export default function HeroSlider({
   slides,
-  chips
+  chips,
+  className
 }: {
   slides: Slide[];
   chips: string[];
+  className?: string;
 }) {
   const [index, setIndex] = React.useState(0);
   const reduce = useReducedMotion();
@@ -44,9 +46,10 @@ export default function HeroSlider({
   const imgIsBroken = !!broken[active.image];
 
   return (
-    <div className="relative overflow-hidden rounded-[28px] border border-slate-200 bg-slate-950 shadow-glow">
-      <div className="relative min-h-[72vh] sm:min-h-[70vh] lg:min-h-[74vh]">
-        {/* Fallback gradient SI la imagen falta */}
+    <section className={cn("relative w-full overflow-hidden", className)}>
+      {/* altura tipo hero real, full width */}
+      <div className="relative min-h-[72vh] sm:min-h-[74vh] lg:min-h-[78vh]">
+        {/* fallback gradient SI falta la imagen (NO cambies rutas) */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(12,74,173,0.55),transparent_55%),radial-gradient(circle_at_85%_15%,rgba(12,165,178,0.45),transparent_55%),linear-gradient(135deg,rgb(var(--brand-900)),rgb(var(--brand-700)))]" />
 
         <AnimatePresence mode="wait">
@@ -65,33 +68,36 @@ export default function HeroSlider({
                 fill
                 priority
                 sizes="100vw"
-                className="object-cover opacity-70"
+                className="object-cover"
                 onError={() => setBroken((b) => ({ ...b, [active.image]: true }))}
               />
             ) : null}
 
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/35 to-slate-950/10" />
+            {/* overlays para legibilidad */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/35 to-slate-950/10" />
             <div className="absolute inset-0 bg-gradient-to-r from-slate-950/55 via-transparent to-slate-950/10" />
           </motion.div>
         </AnimatePresence>
 
+        {/* brillo sutil animado */}
         {!reduce && (
           <motion.div
-            className="pointer-events-none absolute -top-24 -right-24 h-[420px] w-[420px] rounded-full bg-white/10 blur-3xl"
+            className="pointer-events-none absolute -top-24 -right-24 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl"
             animate={{ y: [0, 12, 0], x: [0, -10, 0] }}
             transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
           />
         )}
 
+        {/* CONTENIDO alineado al container, pero el background es full width */}
         <div className="relative z-10">
           <div className="container-pad">
-            <div className="flex min-h-[72vh] sm:min-h-[70vh] lg:min-h-[74vh] items-end pb-10 sm:pb-12">
+            <div className="flex min-h-[72vh] sm:min-h-[74vh] lg:min-h-[78vh] items-end pb-10 sm:pb-12">
               <div className="w-full max-w-2xl">
                 <motion.div
                   key={index}
-                  initial={reduce ? false : { opacity: 0, y: 10 }}
+                  initial={reduce ? false : { opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  transition={{ duration: 0.55, ease: "easeOut" }}
                   className="rounded-3xl bg-white/10 p-5 backdrop-blur-md ring-1 ring-white/15 sm:p-6"
                 >
                   <div className="mb-4 flex flex-wrap gap-2">
@@ -127,7 +133,7 @@ export default function HeroSlider({
                   </div>
                 </motion.div>
 
-                {/* CONTROLES tipo tu screenshot */}
+                {/* controles (ya los tienes, pero más pro) */}
                 <div className="mt-5 flex items-center gap-3">
                   <button
                     type="button"
@@ -164,14 +170,14 @@ export default function HeroSlider({
                     ))}
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
+        {/* línea inferior con gradiente (se ve más premium) */}
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[linear-gradient(90deg,transparent,rgba(12,74,173,0.8),rgba(12,165,178,0.8),transparent)]" />
       </div>
-    </div>
+    </section>
   );
 }
