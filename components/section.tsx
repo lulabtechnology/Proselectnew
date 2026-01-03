@@ -6,12 +6,25 @@ import { cn } from "@/lib/utils";
 
 export function Section({
   className,
-  children
+  children,
+  tone = "plain"
 }: {
   className?: string;
   children: React.ReactNode;
+  tone?: "plain" | "soft";
 }) {
-  return <section className={cn("py-12 sm:py-16", className)}>{children}</section>;
+  return (
+    <section
+      className={cn(
+        "py-12 sm:py-16",
+        tone === "soft" &&
+          "bg-[radial-gradient(circle_at_10%_10%,rgba(12,74,173,0.08),transparent_60%),radial-gradient(circle_at_90%_20%,rgba(12,165,178,0.08),transparent_55%)]",
+        className
+      )}
+    >
+      {children}
+    </section>
+  );
 }
 
 export function SectionHeader({
@@ -26,15 +39,15 @@ export function SectionHeader({
   return (
     <div className="mb-8 sm:mb-10">
       {kicker ? (
-        <div className="mb-2 text-xs font-semibold tracking-wide text-slate-500">
+        <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-extrabold tracking-wide text-brand-900">
           {kicker}
         </div>
       ) : null}
-      <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+      <h2 className="text-2xl font-extrabold tracking-tight text-ink sm:text-4xl">
         {title}
       </h2>
       {subtitle ? (
-        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
           {subtitle}
         </p>
       ) : null}
