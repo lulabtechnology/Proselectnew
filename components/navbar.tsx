@@ -13,12 +13,11 @@ export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
 
-  React.useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  React.useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
+      <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(12,74,173,0.55),rgba(12,165,178,0.55),transparent)]" />
       <div className="container-pad">
         <div className="flex h-16 items-center justify-between gap-3">
           <Brand />
@@ -31,10 +30,10 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "rounded-2xl px-4 py-2 text-sm font-medium transition focus-ring",
+                    "rounded-2xl px-4 py-2 text-sm font-semibold transition focus-ring",
                     active
-                      ? "bg-slate-900 text-white"
-                      : "text-slate-700 hover:bg-slate-100"
+                      ? "bg-brand-50 text-brand-900 border border-brand-200"
+                      : "text-slate-700 hover:bg-brand-50"
                   )}
                 >
                   {item.label}
@@ -53,7 +52,7 @@ export default function Navbar() {
 
           <button
             type="button"
-            className="md:hidden rounded-2xl border border-slate-200 bg-white px-3 py-2 text-slate-900 shadow-sm focus-ring"
+            className="md:hidden rounded-2xl border border-slate-200 bg-white px-3 py-2 text-ink shadow-soft focus-ring"
             onClick={() => setOpen((v) => !v)}
             aria-label="Abrir menú"
           >
@@ -62,7 +61,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* mobile menu */}
       <div
         className={cn(
           "md:hidden overflow-hidden border-t border-slate-200 bg-white transition-[max-height] duration-300",
@@ -78,10 +76,10 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "rounded-2xl px-4 py-3 text-sm font-medium focus-ring",
+                    "rounded-2xl px-4 py-3 text-sm font-semibold focus-ring",
                     active
-                      ? "bg-slate-900 text-white"
-                      : "text-slate-700 hover:bg-slate-100"
+                      ? "bg-brand-50 text-brand-900 border border-brand-200"
+                      : "text-slate-700 hover:bg-brand-50"
                   )}
                 >
                   {item.label}
