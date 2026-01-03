@@ -2,30 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Paleta inspirada en el PDF (azul profundo + teal) */
 :root {
-  --bg: 255 255 255;
-  --fg: 15 23 42; /* slate-900 */
+  --paper: 255 255 255;
+  --ink: 15 23 42;
+
+  --brand: 12 74 173;        /* blue */
+  --brand-50: 240 247 255;
+  --brand-100: 224 240 255;
+  --brand-200: 194 223 255;
+  --brand-700: 10 44 96;
+  --brand-900: 7 29 63;
+
+  --accent: 12 165 178;      /* teal */
+  --accent-50: 236 254 255;
+  --accent-100: 207 250 254;
+  --accent-700: 14 116 144;
 }
 
-html, body {
-  height: 100%;
-}
+html, body { height: 100%; }
 
 body {
-  color: rgb(var(--fg));
-  background: rgb(var(--bg));
+  color: rgb(var(--ink));
+  background:
+    radial-gradient(1200px 600px at 12% -10%, rgba(12, 74, 173, 0.12), transparent 60%),
+    radial-gradient(900px 520px at 92% 10%, rgba(12, 165, 178, 0.12), transparent 55%),
+    linear-gradient(to bottom, #ffffff, rgba(240, 247, 255, 0.7));
 }
 
 .container-pad {
   @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
 }
 
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/20 focus-visible:ring-offset-2;
+}
+
+/* grid suave */
 .bg-grid {
   background-image:
     radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.10) 1px, transparent 0);
   background-size: 28px 28px;
-}
-
-.focus-ring {
-  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900/20 focus-visible:ring-offset-2;
 }
