@@ -9,8 +9,8 @@ export default function ServicesPage() {
       <Section className="pt-0">
         <SectionHeader
           kicker="Servicios"
-          title={servicesContent.title || "(Pendiente: título del DOCX)"}
-          subtitle={servicesContent.intro || "(Pendiente: intro del DOCX)"}
+          title={servicesContent.title}
+          subtitle={servicesContent.intro}
         />
 
         <div className="space-y-10">
@@ -18,6 +18,7 @@ export default function ServicesPage() {
             <div key={idx}>
               <Reveal>
                 <Card className="overflow-hidden">
+                  <div className="h-1.5 w-full bg-[linear-gradient(90deg,rgb(var(--brand)),rgb(var(--accent)))]" />
                   <CardContent className="pt-6">
                     <CardTitle className="text-base">{cat.category}</CardTitle>
                     <CardDescription className="mt-2">{cat.description}</CardDescription>
