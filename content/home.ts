@@ -2,36 +2,58 @@ export const hero = {
   slides: [
     {
       image: "/images/hero/slide-1.jpg",
-      title: "(Pendiente: título slide 1 del DOCX)",
-      subtitle: "(Pendiente: subtítulo slide 1 del DOCX)",
+      title: "Obras civiles, arquitectura y obras electromecánicas",
+      subtitle:
+        "Diseño, planificación, construcción y mantenimiento con enfoque en calidad, seguridad y confiabilidad.",
       ctaPrimary: { label: "Ver servicios", href: "/servicios" },
       ctaSecondary: { label: "Contactar", href: "/contacto" }
     },
     {
       image: "/images/hero/slide-2.jpg",
-      title: "(Pendiente: título slide 2 del DOCX)",
-      subtitle: "(Pendiente: subtítulo slide 2 del DOCX)",
+      title: "Diseño e instalación de sistemas eléctricos",
+      subtitle:
+        "Elaboración de planos y cálculos eléctricos, instalación segura, mantenimiento y certificación.",
       ctaPrimary: { label: "Ver proyectos", href: "/proyectos" },
       ctaSecondary: { label: "Sobre nosotros", href: "/sobre-nosotros" }
     },
     {
       image: "/images/hero/slide-3.jpg",
-      title: "(Pendiente: título slide 3 del DOCX)",
-      subtitle: "(Pendiente: subtítulo slide 3 del DOCX)",
+      title: "Sistemas húmedos contra incendio y gas licuado",
+      subtitle:
+        "Diseño e instalación con cumplimiento normativo, pruebas, puesta en marcha y certificaciones.",
       ctaPrimary: { label: "Solicitar cotización", href: "/contacto" },
-      ctaSecondary: { label: "Explorar", href: "/servicios" }
+      ctaSecondary: { label: "Explorar servicios", href: "/servicios" }
     }
+  ],
+  chips: [
+    "Fundada en 2011",
+    "Obras civiles",
+    "Arquitectura",
+    "Eléctrico",
+    "Fontanería",
+    "Gas licuado",
+    "Contra incendio"
   ]
 };
 
 export const homeSections = {
-  highlightsTitle: "(Pendiente: título sección highlights del DOCX)",
+  highlightsTitle: "Compromiso, calidad y soluciones de ingeniería",
   highlights: [
-    { title: "(Pendiente)", body: "(Pendiente: texto del DOCX)" },
-    { title: "(Pendiente)", body: "(Pendiente: texto del DOCX)" },
-    { title: "(Pendiente)", body: "(Pendiente: texto del DOCX)" }
+    {
+      title: "Calidad y seguridad",
+      body: "Enfoque en soluciones confiables y seguras en todas las fases del proyecto."
+    },
+    {
+      title: "Diseño y ejecución",
+      body: "Soporte integral: estudio técnico, planificación, construcción y mantenimiento."
+    },
+    {
+      title: "Innovación y vanguardia",
+      body: "Mejora continua e implementación de tecnologías para un mejor servicio."
+    }
   ],
-  ctaBandTitle: "(Pendiente: CTA del DOCX)",
-  ctaBandBody: "(Pendiente: texto CTA del DOCX)",
+  ctaBandTitle: "¿Listo para iniciar tu proyecto?",
+  ctaBandBody:
+    "Cuéntanos lo que necesitas y coordinamos el siguiente paso para tu obra o instalación.",
   ctaBandButton: { label: "Ir a contacto", href: "/contacto" }
 };
