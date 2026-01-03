@@ -9,7 +9,7 @@ export default function ProjectsPage() {
         <SectionHeader
           kicker="Portafolio"
           title="Proyectos"
-          subtitle="(Pendiente: texto del DOCX si existe. Si no, deja neutro.)"
+          subtitle="Galería de obras ejecutadas y referencias fotográficas."
         />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
