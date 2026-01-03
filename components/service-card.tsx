@@ -42,7 +42,7 @@ export default function ServiceCard({
     <Card className="h-full overflow-hidden">
       <CardContent className="pt-6">
         <div className="flex items-start gap-3">
-          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-slate-900 text-white">
+          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-[linear-gradient(135deg,rgb(var(--brand)),rgb(var(--accent)))] text-white shadow-glow">
             <Icon className="h-5 w-5" />
           </div>
           <div className="min-w-0 flex-1">
