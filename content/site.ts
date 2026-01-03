@@ -1,31 +1,9 @@
-export type SiteMeta = {
-  name: string;
-  shortName: string;
-  tagline: string;
-  description: string;
-  url?: string;
-  founded?: string;
-  about: string;
-  mission?: string;
-  vision?: string;
-};
-
-export type ContactMeta = {
-  phoneDisplay: string;
-  phoneE164: string;
-  whatsappDigits: string;   // lo dejamos vacío porque el cliente pidió SOLO teléfono y correo
-  whatsappE164: string;     // vacío
-  emails: string[];
-  address: string;          // vacío por instrucción del cliente
-  mapQuery: string;         // vacío por instrucción del cliente
-};
-
 export const branding = {
   logoPath: "/images/logo.png",
   ogImagePath: "/images/og.jpg"
 };
 
-export const site: SiteMeta = {
+export const site = {
   name: "Proyecto y Servicios Electromecánicos, S.A. (PROSELEC, S.A.)",
   shortName: "PROSELEC",
   tagline: "Obras civiles, arquitectura e instalaciones electromecánicas",
@@ -34,23 +12,27 @@ export const site: SiteMeta = {
   url: "www.proselecpanama.es",
   founded: "2011",
   about:
-    "Empresa panameña que desarrolla su actividad en obras civiles, arquitectura y obras electromecánicas.",
+    "Empresa panameña que desarrolla su actividad dentro del campo de Obras Civiles, Arquitectura y Obras Electromecánicas.",
   mission:
     "Brindar un servicio de calidad en el estudio técnico para el diseño, planificación, construcción, equipamiento y mantenimiento de proyectos de obra civil e instalaciones electromecánicas.",
   vision:
-    "Ser una empresa reconocida por ofrecer un servicio de calidad, seguridad y confiable, destacando en la innovación y tecnologías de vanguardia."
+    "Ser una empresa reconocida en el país por ofrecer un servicio de calidad, seguridad y confiable en todas las soluciones de ingeniería, destacando en la innovación y tecnologías de vanguardia para un mejor servicio."
 };
 
-export const contact: ContactMeta = {
+export const contact = {
   phoneDisplay: "6852-7127",
   phoneE164: "+50768527127",
 
-  whatsappDigits: "",
-  whatsappE164: "",
+  // WhatsApp directo a ese mismo número
+  whatsappDigits: "50768527127",
+  whatsappE164: "+50768527127",
 
-  // 👇 El cliente dijo “correo nuevo (dominio)”: NO lo invento. Lo dejo para que lo reemplaces.
+  // Tú lo reemplazas por el correo de dominio real
   emails: ["REEMPLAZAR@TU-DOMINIO.COM"],
 
-  address: "",
-  mapQuery: ""
+  // Del PDF
+  address:
+    "Calle Ave. Rodolfo Girón, Santiago Veraguas, Edificio Eléctrico Santiago, Local N° 2.",
+  mapQuery:
+    "Calle Ave. Rodolfo Girón, Santiago Veraguas, Edificio Eléctrico Santiago, Local N° 2."
 };
