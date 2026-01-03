@@ -1,38 +1,36 @@
 import type { Metadata } from "next";
-import { branding, site } from "@/content/site";
 import "./globals.css";
+
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import FloatingCTA from "@/components/floating-cta";
 import MobileCTABar from "@/components/mobile-cta-bar";
-import { Plus_Jakarta_Sans } from "next/font/google";
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap"
-});
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.shortName} | ${site.tagline}`,
-    template: `%s | ${site.shortName}`
+    default: "PROSELEC | Obras civiles, arquitectura e instalaciones electromecánicas",
+    template: `%s | PROSELEC`,
   },
-  description: site.description,
+  description:
+    "Soluciones de ingeniería para el diseño, planificación, construcción, equipamiento y mantenimiento de proyectos.",
   openGraph: {
-    title: `${site.shortName} | ${site.tagline}`,
-    description: site.description,
-    images: [{ url: branding.ogImagePath }]
-  }
+    title: "PROSELEC | Obras civiles, arquitectura e instalaciones electromecánicas",
+    description:
+      "Soluciones de ingeniería para el diseño, planificación, construcción, equipamiento y mantenimiento de proyectos.",
+    images: [{ url: "/images/og.jpg" }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={plusJakarta.className}>
+    <html lang="es">
       <body>
         <Navbar />
         <main className="pb-20 sm:pb-0">{children}</main>
+
+        {/* ✅ SOLO UNO */}
         <Footer />
+
         <FloatingCTA />
         <MobileCTABar />
       </body>
