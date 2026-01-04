@@ -2,182 +2,183 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import * as React from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
+import { ArrowRight, MessageCircle } from "lucide-react";
+import { contact, site } from "@/content/site";
+import { waLink } from "@/lib/links";
 
 type Slide = {
-  image: string; // "/images/hero/slide-1.jpg"
+  src: string;
+  kicker: string;
   title: string;
-  subtitle: string;
-  ctaPrimary: { label: string; href: string };
-  ctaSecondary: { label: string; href: string };
+  desc: string;
 };
 
-export default function HeroSlider({
-  slides,
-  chips,
-  className
-}: {
-  slides: Slide[];
-  chips: string[];
-  className?: string;
-}) {
-  const [index, setIndex] = React.useState(0);
-  const reduce = useReducedMotion();
-  const [broken, setBroken] = React.useState<Record<string, boolean>>({});
+export default function HeroSlider() {
+  const slides: Slide[] = useMemo(
+    () => [
+      {
+        src: "/images/hero/slide-1.jpg",
+        kicker: site.shortName,
+        title: "Obras civiles y soluciones electromecánicas",
+        desc: "Diseño, planificación, construcción, equipamiento y mantenimiento con enfoque en calidad, seguridad y cumplimiento.",
+      },
+      {
+        src: "/images/hero/slide-2.jpg",
+        kicker: site.shortName,
+        title: "Ingeniería aplicada a cada etapa del proyecto",
+        desc: "Soluciones técnicas para obras civiles, arquitectura e instalaciones: eléctrica, fontanería, gas licuado y contra incendio.",
+      },
+      {
+        src: "/images/hero/slide-3.jpg",
+        kicker: site.shortName,
+        title: "Ejecución responsable y resultados comprobables",
+        desc: "Acompañamiento técnico, control de calidad y entrega enfocada en necesidades reales de obra.",
+      },
+    ],
+    []
+  );
 
-  const next = React.useCallback(() => {
-    setIndex((i) => (i + 1) % slides.length);
-  }, [slides.length]);
+  const [index, setIndex] = useState(0);
+  const total = slides.length;
 
-  const prev = React.useCallback(() => {
-    setIndex((i) => (i - 1 + slides.length) % slides.length);
-  }, [slides.length]);
+  useEffect(() => {
+    const t = setInterval(() => {
+      setIndex((v) => (v + 1) % total);
+    }, 6500);
+    return () => clearInterval(t);
+  }, [total]);
 
-  React.useEffect(() => {
-    const id = window.setInterval(() => next(), 6500);
-    return () => window.clearInterval(id);
-  }, [next]);
+  const prev = () => setIndex((v) => (v - 1 + total) % total);
+  const next = () => setIndex((v) => (v + 1) % total);
 
-  const active = slides[index];
-  const imgIsBroken = !!broken[active.image];
+  const waHref = waLink(contact.whatsappDigits, "Hola, quiero cotizar con PROSELEC.");
 
   return (
-    <section className={cn("relative w-full overflow-hidden", className)}>
-      {/* altura tipo hero real, full width */}
-      <div className="relative min-h-[72vh] sm:min-h-[74vh] lg:min-h-[78vh]">
-        {/* fallback gradient SI falta la imagen (NO cambies rutas) */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(12,74,173,0.55),transparent_55%),radial-gradient(circle_at_85%_15%,rgba(12,165,178,0.45),transparent_55%),linear-gradient(135deg,rgb(var(--brand-900)),rgb(var(--brand-700)))]" />
-
+    <section className="relative w-full overflow-hidden">
+      {/* full width + altura pro */}
+      <div className="relative h-[78vh] min-h-[520px] w-full">
         <AnimatePresence mode="wait">
           <motion.div
-            key={active.image}
+            key={slides[index].src}
             className="absolute inset-0"
-            initial={reduce ? { opacity: 1 } : { opacity: 0, scale: 1.02 }}
+            initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={reduce ? { opacity: 1 } : { opacity: 0, scale: 1.01 }}
-            transition={{ duration: 0.65, ease: "easeOut" }}
+            exit={{ opacity: 0, scale: 1.01 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            {!imgIsBroken ? (
-              <Image
-                src={active.image}
-                alt=""
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover"
-                onError={() => setBroken((b) => ({ ...b, [active.image]: true }))}
-              />
-            ) : null}
+            {/* Imagen (no import estático -> no rompe build) */}
+            <Image
+              src={slides[index].src}
+              alt={slides[index].title}
+              fill
+              priority={index === 0}
+              className="object-cover"
+              sizes="100vw"
+            />
 
-            {/* overlays para legibilidad */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/35 to-slate-950/10" />
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/55 via-transparent to-slate-950/10" />
+            {/* Overlay pro */}
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/55 to-slate-950/25" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.18),transparent_55%)]" />
           </motion.div>
         </AnimatePresence>
 
-        {/* brillo sutil animado */}
-        {!reduce && (
-          <motion.div
-            className="pointer-events-none absolute -top-24 -right-24 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl"
-            animate={{ y: [0, 12, 0], x: [0, -10, 0] }}
-            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          />
-        )}
+        {/* contenido */}
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl items-center px-4 pt-20 sm:px-6">
+          <div className="max-w-2xl">
+            <motion.div
+              key={`k-${index}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-white/90"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
+              {slides[index].kicker}
+            </motion.div>
 
-        {/* CONTENIDO alineado al container, pero el background es full width */}
-        <div className="relative z-10">
-          <div className="container-pad">
-            <div className="flex min-h-[72vh] sm:min-h-[74vh] lg:min-h-[78vh] items-end pb-10 sm:pb-12">
-              <div className="w-full max-w-2xl">
-                <motion.div
-                  key={index}
-                  initial={reduce ? false : { opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.55, ease: "easeOut" }}
-                  className="rounded-3xl bg-white/10 p-5 backdrop-blur-md ring-1 ring-white/15 sm:p-6"
-                >
-                  <div className="mb-4 flex flex-wrap gap-2">
-                    {chips.slice(0, 6).map((c) => (
-                      <span
-                        key={c}
-                        className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/90 ring-1 ring-white/15"
-                      >
-                        {c}
-                      </span>
-                    ))}
-                  </div>
+            <motion.h1
+              key={`t-${index}`}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+              className="mt-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+            >
+              {slides[index].title}
+            </motion.h1>
 
-                  <h1 className="text-balance text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
-                    {active.title}
-                  </h1>
-                  <p className="mt-3 text-pretty text-sm leading-6 text-white/85 sm:text-base">
-                    {active.subtitle}
-                  </p>
+            <motion.p
+              key={`d-${index}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.05, ease: "easeOut" }}
+              className="mt-4 text-base leading-relaxed text-white/80 sm:text-lg"
+            >
+              {slides[index].desc}
+            </motion.p>
 
-                  <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                    <Link href={active.ctaPrimary.href}>
-                      <Button className="w-full sm:w-auto" size="lg">
-                        {active.ctaPrimary.label}
-                        <ArrowRight className="h-4 w-4" />
-                      </Button>
-                    </Link>
-                    <Link href={active.ctaSecondary.href}>
-                      <Button className="w-full sm:w-auto" size="lg" variant="outline">
-                        {active.ctaSecondary.label}
-                      </Button>
-                    </Link>
-                  </div>
-                </motion.div>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link
+                href="/servicios"
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-bold text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              >
+                Ver servicios <ArrowRight className="h-4 w-4" />
+              </Link>
 
-                {/* controles (ya los tienes, pero más pro) */}
-                <div className="mt-5 flex items-center gap-3">
+              <Link
+                href="/proyectos"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/15"
+              >
+                Ver proyectos
+              </Link>
+
+              <a
+                href={waHref}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-sky-600 to-blue-700 px-4 py-2.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              >
+                <MessageCircle className="h-4 w-4" />
+                WhatsApp
+              </a>
+            </div>
+
+            {/* Controles */}
+            <div className="mt-8 flex items-center gap-3">
+              <button
+                onClick={prev}
+                className="rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white/90 transition hover:bg-white/10"
+              >
+                Anterior
+              </button>
+              <button
+                onClick={next}
+                className="rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white/90 transition hover:bg-white/10"
+              >
+                Siguiente
+              </button>
+
+              <div className="ml-2 flex items-center gap-2">
+                {slides.map((_, i) => (
                   <button
-                    type="button"
-                    onClick={prev}
-                    className="rounded-2xl bg-white/10 px-4 py-2 text-xs font-extrabold text-white ring-1 ring-white/15 hover:bg-white/15 focus-ring"
-                  >
-                    <span className="inline-flex items-center gap-2">
-                      <ChevronLeft className="h-4 w-4" /> Anterior
-                    </span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={next}
-                    className="rounded-2xl bg-white/10 px-4 py-2 text-xs font-extrabold text-white ring-1 ring-white/15 hover:bg-white/15 focus-ring"
-                  >
-                    <span className="inline-flex items-center gap-2">
-                      Siguiente <ChevronRight className="h-4 w-4" />
-                    </span>
-                  </button>
-
-                  <div className="ml-2 flex items-center gap-2">
-                    {slides.map((_, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        aria-label={`Ir al slide ${i + 1}`}
-                        onClick={() => setIndex(i)}
-                        className={cn(
-                          "h-2.5 w-2.5 rounded-full ring-1 ring-white/25 transition",
-                          i === index ? "bg-white" : "bg-white/30 hover:bg-white/55"
-                        )}
-                      />
-                    ))}
-                  </div>
-                </div>
+                    key={i}
+                    onClick={() => setIndex(i)}
+                    aria-label={`Ir al slide ${i + 1}`}
+                    className={[
+                      "h-2 w-2 rounded-full transition",
+                      i === index ? "bg-white" : "bg-white/30 hover:bg-white/50",
+                    ].join(" ")}
+                  />
+                ))}
               </div>
             </div>
           </div>
         </div>
-
-        {/* línea inferior con gradiente (se ve más premium) */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[linear-gradient(90deg,transparent,rgba(12,74,173,0.8),rgba(12,165,178,0.8),transparent)]" />
       </div>
+
+      {/* corte inferior suave */}
+      <div className="h-10 bg-gradient-to-b from-slate-950/20 to-transparent" />
     </section>
   );
 }
