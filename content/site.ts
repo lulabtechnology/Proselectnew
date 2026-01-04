@@ -1,38 +1,39 @@
-export const branding = {
-  logoPath: "/images/logo.png",
-  ogImagePath: "/images/og.jpg"
+export const brand = {
+  // ✅ si en algún momento el logo cambia de ruta, SOLO cambias esto
+  logoSrc: "/images/logo.png",
+  logoAlt: "PROSELEC, S.A.",
 };
 
 export const site = {
-  name: "Proyecto y Servicios Electromecánicos, S.A. (PROSELEC, S.A.)",
+  name: "PROSELEC, S.A.",
   shortName: "PROSELEC",
   tagline: "Obras civiles, arquitectura e instalaciones electromecánicas",
+  // Basado en el texto corporativo del PDF (sin inventar)
   description:
-    "Soluciones de ingeniería para el diseño, planificación, construcción, equipamiento y mantenimiento de proyectos.",
-  url: "www.proselecpanama.es",
-  founded: "2011",
-  about:
-    "Empresa panameña que desarrolla su actividad dentro del campo de Obras Civiles, Arquitectura y Obras Electromecánicas.",
+    "Servicio de calidad en el estudio técnico para el diseño, planificación, construcción, equipamiento y mantenimiento de proyectos de obra civil e instalaciones electromecánicas.",
+  url: "https://proselectnew.vercel.app",
+  founded: 2011,
   mission:
     "Brindar un servicio de calidad en el estudio técnico para el diseño, planificación, construcción, equipamiento y mantenimiento de proyectos de obra civil e instalaciones electromecánicas.",
   vision:
-    "Ser una empresa reconocida en el país por ofrecer un servicio de calidad, seguridad y confiable en todas las soluciones de ingeniería, destacando en la innovación y tecnologías de vanguardia para un mejor servicio."
+    "Ser una empresa reconocida en el país por ofrecer un servicio de calidad, seguridad y confiable en todas las soluciones de ingeniería, destacando en la innovación tecnológica y de vanguardia.",
 };
 
 export const contact = {
+  // ✅ cliente pidió dejar SOLO este número
   phoneDisplay: "6852-7127",
   phoneE164: "+50768527127",
 
-  // WhatsApp directo a ese mismo número
+  // WhatsApp directo (Panamá +507)
   whatsappDigits: "50768527127",
   whatsappE164: "+50768527127",
 
-  // Tú lo reemplazas por el correo de dominio real
-  emails: ["REEMPLAZAR@TU-DOMINIO.COM"],
+  // ⚠️ Reemplaza esto por el correo nuevo del dominio
+  emails: ["REEMPLAZAR@TU-DOMINIO.com"],
 
-  // Del PDF
+  // Dirección del PDF
   address:
     "Calle Ave. Rodolfo Girón, Santiago Veraguas, Edificio Eléctrico Santiago, Local N° 2.",
   mapQuery:
-    "Calle Ave. Rodolfo Girón, Santiago Veraguas, Edificio Eléctrico Santiago, Local N° 2."
+    "Calle Ave. Rodolfo Girón, Santiago Veraguas, Edificio Eléctrico Santiago, Local N° 2.",
 };
