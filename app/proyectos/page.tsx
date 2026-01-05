@@ -23,8 +23,8 @@ const PROJECTS: Project[] = [
   },
   {
     id: 3,
-    title: "Construcción de Edificio Eléctrico (Santiago, Veraguas)",
-    subtitle: "Obra civil e infraestructura",
+    title: "Sistemas Sanitarios comerciales",
+    subtitle: "Infraestructura Sanitaria",
     image: "/images/projects/project-03.jpg",
   },
   {
@@ -35,7 +35,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: 5,
-    title: "Sistema de Drenaje Estadio Ramón Cantera (Aguadulce)",
+    title: "Sistema de Drenaje de Plaza Comercial",
     subtitle: "Sistema pluvial / drenaje",
     image: "/images/projects/project-05.jpg",
   },
@@ -59,8 +59,8 @@ const PROJECTS: Project[] = [
   },
   {
     id: 9,
-    title: "Proyecto Terminal de Transporte Penonomé: sistema sanitario / acueducto potable / sistema contra incendio",
-    subtitle: "Sanitario, acueducto y contra incendio",
+    title: "SISTEMAS SOTERRADOS C900",
+    subtitle: "INFRAESTRUCTURA",
     image: "/images/projects/project-09.jpg",
   },
   {
