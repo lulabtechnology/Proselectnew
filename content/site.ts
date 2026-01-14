@@ -37,7 +37,7 @@ export const contact = {
   whatsappE164: "+50768527127",
 
   // ⚠️ reemplaza por el correo nuevo real del dominio
-  emails: ["REEMPLAZAR@TU-DOMINIO.com"],
+  emails: ["hero@proselectpty.com"],
 
   // Dirección del PDF
   address:
