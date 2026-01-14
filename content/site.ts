@@ -8,7 +8,7 @@ export const site = {
   name: "PROSELEC, S.A.",
   shortName: "PROSELEC",
   tagline: "Obras Civiles & Electromecánicas",
-  url: "https://proselectnew.vercel.app",
+  url: "www.proselectpty.com",
   founded: 2011,
 
   // ✅ Texto corporativo (base) para SEO y tarjetas
