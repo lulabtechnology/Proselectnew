@@ -41,7 +41,7 @@ export const contact = {
 
   // Dirección del PDF
   address:
-    "Calle Ave. Rodolfo Girón, Santiago Veraguas, Edificio Eléctrico Santiago, Local N° 2.",
+    "Santiago,  Calle Septima,  Avenida C Edificio Jelaisa Segundo Piso.",
   mapQuery:
-    "Calle Ave. Rodolfo Girón, Santiago Veraguas, Edificio Eléctrico Santiago, Local N° 2.",
+    "Santiago,  Calle Septima,  Avenida C Edificio Jelaisa Segundo Piso.",
 };
