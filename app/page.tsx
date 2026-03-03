@@ -1,15 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Shield, HardHat, Award } from "lucide-react";
 import HeroSlider from "@/components/hero-slider";
 import ScrollReveal from "@/components/scroll-reveal";
+import { site } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: "Inicio",
+  description: site.description,
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (
     <div className="bg-white">
-      {/* ✅ HERO FULL WIDTH */}
       <HeroSlider />
 
-      {/* secciones */}
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <div className="grid gap-6 md:grid-cols-3">
           <ScrollReveal>
@@ -18,7 +24,7 @@ export default function HomePage() {
                 <div className="rounded-2xl bg-sky-50 p-3 ring-1 ring-sky-100">
                   <Shield className="h-5 w-5 text-sky-700" />
                 </div>
-                <div className="font-bold text-slate-900">Calidad & seguridad</div>
+                <div className="font-bold text-slate-900">Calidad &amp; seguridad</div>
               </div>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Ejecución responsable con enfoque en seguridad y estándares técnicos.
@@ -32,7 +38,7 @@ export default function HomePage() {
                 <div className="rounded-2xl bg-sky-50 p-3 ring-1 ring-sky-100">
                   <HardHat className="h-5 w-5 text-sky-700" />
                 </div>
-                <div className="font-bold text-slate-900">Diseño & planos</div>
+                <div className="font-bold text-slate-900">Diseño &amp; planos</div>
               </div>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Soluciones técnicas y documentación para proyectos civiles y electromecánicos.
