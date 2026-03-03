@@ -8,7 +8,8 @@ export const site = {
   name: "PROSELEC, S.A.",
   shortName: "PROSELEC",
   tagline: "Obras Civiles & Electromecánicas",
-  url: "www.proselecpanama.com",
+  // ✅ URL canónica (con https) para SEO / OpenGraph / Schema
+  url: "https://proselecpanama.com",
   founded: 2011,
 
   // ✅ Texto corporativo (base) para SEO y tarjetas
@@ -36,7 +37,7 @@ export const contact = {
   whatsappDigits: "50768527127",
   whatsappE164: "+50768527127",
 
-  // ⚠️ reemplaza por el correo nuevo real del dominio
+  // ⚠️ reemplaza por el correo real del dominio (si cambia)
   emails: ["hero@proselecpanama.com"],
 
   // Dirección del PDF
