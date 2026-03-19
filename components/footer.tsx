@@ -114,7 +114,6 @@ export default function Footer() {
         <div className="mt-10 h-px w-full bg-slate-200" />
         <div className="mt-6 flex flex-col gap-2 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
           <div>© {new Date().getFullYear()} {site.shortName}. Todos los derechos reservados.</div>
-          <div className="text-slate-400">Next.js + Tailwind</div>
         </div>
       </div>
     </footer>
