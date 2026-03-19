@@ -4,6 +4,7 @@ import { ArrowRight, Shield, HardHat, Award, MapPin, Building2, Flame, HelpCircl
 import HeroSlider from "@/components/hero-slider";
 import ScrollReveal from "@/components/scroll-reveal";
 import { site } from "@/content/site";
+<<<<<<< HEAD
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -45,17 +46,28 @@ const faqs = [
       "Puedes solicitar una cotización desde la web entrando a la sección de contacto, llamando al número publicado o escribiendo por WhatsApp para compartir los detalles del proyecto.",
   },
 ];
+=======
+
+export const metadata: Metadata = {
+  title: "Inicio",
+  description: site.description,
+  alternates: { canonical: "/" },
+};
+>>>>>>> dbee89047fb4775714b364566d6b6c2fda644cc1
 
 export default function HomePage() {
   const faqSchema = faqJsonLd(faqs);
 
   return (
     <div className="bg-white">
+<<<<<<< HEAD
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
+=======
+>>>>>>> dbee89047fb4775714b364566d6b6c2fda644cc1
       <HeroSlider />
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
@@ -66,7 +78,11 @@ export default function HomePage() {
                 <div className="rounded-2xl bg-sky-50 p-3 ring-1 ring-sky-100">
                   <Shield className="h-5 w-5 text-sky-700" />
                 </div>
+<<<<<<< HEAD
                 <div className="font-bold text-slate-900">Calidad y seguridad</div>
+=======
+                <div className="font-bold text-slate-900">Calidad &amp; seguridad</div>
+>>>>>>> dbee89047fb4775714b364566d6b6c2fda644cc1
               </div>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Ejecución responsable con enfoque en seguridad, cumplimiento y estándares técnicos.
@@ -80,7 +96,11 @@ export default function HomePage() {
                 <div className="rounded-2xl bg-sky-50 p-3 ring-1 ring-sky-100">
                   <HardHat className="h-5 w-5 text-sky-700" />
                 </div>
+<<<<<<< HEAD
                 <div className="font-bold text-slate-900">Diseño y planificación</div>
+=======
+                <div className="font-bold text-slate-900">Diseño &amp; planos</div>
+>>>>>>> dbee89047fb4775714b364566d6b6c2fda644cc1
               </div>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
                 Soluciones técnicas, documentación de obra, planos y acompañamiento para cada etapa del proyecto.

@@ -8,7 +8,8 @@ export const site = {
   name: "PROSELEC, S.A.",
   shortName: "PROSELEC",
   tagline: "Obras Civiles & Electromecánicas",
-  url: "https://proselectnew.vercel.app",
+  // ✅ URL canónica (con https) para SEO / OpenGraph / Schema
+  url: "https://proselecpanama.com",
   founded: 2011,
 
   // ✅ Texto corporativo (base) para SEO y tarjetas
@@ -36,12 +37,12 @@ export const contact = {
   whatsappDigits: "50768527127",
   whatsappE164: "+50768527127",
 
-  // ⚠️ reemplaza por el correo nuevo real del dominio
-  emails: ["REEMPLAZAR@TU-DOMINIO.com"],
+  // ⚠️ reemplaza por el correo real del dominio (si cambia)
+  emails: ["hero@proselecpanama.com"],
 
   // Dirección del PDF
   address:
-    "Calle Ave. Rodolfo Girón, Santiago Veraguas, Edificio Eléctrico Santiago, Local N° 2.",
+    "Santiago,  Calle Septima,  Avenida C Edificio Jelaisa Segundo Piso.",
   mapQuery:
-    "Calle Ave. Rodolfo Girón, Santiago Veraguas, Edificio Eléctrico Santiago, Local N° 2.",
+    "Santiago,  Calle Septima,  Avenida C Edificio Jelaisa Segundo Piso.",
 };

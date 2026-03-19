@@ -6,6 +6,8 @@ import { Mail, Phone, MessageCircle } from "lucide-react";
 export default function Footer() {
   const email0 = contact.emails?.[0] ?? "";
   const waMsg = "Hola, me gustaría solicitar una cotización con PROSELEC.";
+  const siteHref = site.url?.startsWith("http") ? site.url : site.url ? `https://${site.url}` : "";
+  const siteLabel = siteHref ? siteHref.replace(/^https?:\/\//, "") : "";
 
   return (
     <footer className="mt-16 border-t border-slate-200 bg-white">
@@ -81,7 +83,13 @@ export default function Footer() {
                   {site.url ? (
                     <div>
                       <span className="text-slate-500">Web:</span>{" "}
-                      <span className="font-semibold">{site.url}</span>
+                      {siteHref ? (
+                        <a className="font-semibold hover:underline" href={siteHref} target="_blank" rel="noreferrer">
+                          {siteLabel}
+                        </a>
+                      ) : (
+                        <span className="font-semibold">{site.url}</span>
+                      )}
                     </div>
                   ) : null}
                   {site.founded ? (
